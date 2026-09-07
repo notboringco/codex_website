@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee5">
+  <meta name="description" content="A 52-week curriculum for becoming the founder founders call on real business decisions.">
+  <title>The Founder’s Strategist</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#books" aria-label="The Founder’s Strategist home">
+        <span class="brand-mark">FS</span>
+        <span class="brand-copy">
+          <strong>The Founder’s Strategist</strong>
+          <small>52 weeks of real business judgment</small>
+        </span>
+      </a>
+      <div class="header-actions">
+        <button class="icon-button" id="openSearch" type="button" aria-label="Search books" title="Search books">
+          <span aria-hidden="true">⌕</span>
+        </button>
+        <button class="icon-button" id="openDataMenu" type="button" aria-label="Data tools" title="Data tools">
+          <span aria-hidden="true">•••</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">THE CURRICULUM</p>
+        <h1 id="hero-title">Become the person founders call <em>before</em> they know the answer.</h1>
+      </div>
+      <p class="hero-dek">Strategy, finance, capital allocation, pricing, sales, operations, organization, technology, institutions, and the judgment to connect them.</p>
+    </section>
+
+    <section class="stats" aria-label="Progress">
+      <div><strong id="statFinished">0</strong><span>finished</span></div>
+      <div><strong id="statNotes">0</strong><span>with notes</span></div>
+      <div><strong id="statWords">0</strong><span>note words</span></div>
+      <div><strong id="statConnections">0</strong><span>connections</span></div>
+    </section>
+
+    <nav class="view-tabs" aria-label="Views">
+      <a href="#books" data-view-link="books">Bookshelf</a>
+      <a href="#connections" data-view-link="connections">Connections</a>
+      <a href="#roadmap" data-view-link="roadmap">12-month roadmap</a>
+    </nav>
+
+    <section class="view" id="view-books" data-view="books">
+      <div class="library-toolbar">
+        <label class="search-box">
+          <span class="sr-only">Search books</span>
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search title, author, idea, case…">
+        </label>
+        <select id="monthFilter" aria-label="Filter by month">
+          <option value="all">All months</option>
+        </select>
+        <select id="statusFilter" aria-label="Filter by reading status">
+          <option value="all">All statuses</option>
+          <option value="not-started">Not started</option>
+          <option value="reading">Reading</option>
+          <option value="finished">Finished</option>
+          <option value="revisit">Revisit</option>
+        </select>
+      </div>
+      <div id="library" class="library" aria-live="polite"></div>
+      <p id="emptyState" class="empty-state" hidden>No books match those filters.</p>
+    </section>
+
+    <section class="view" id="view-connections" data-view="connections" hidden>
+      <div class="section-head">
+        <p class="eyebrow">YOUR KNOWLEDGE GRAPH</p>
+        <h2>What your notes are starting to say.</h2>
+        <p>The graph blends each book’s core concepts with the words and tags you use in your own notes. Stronger lines mean more overlap.</p>
+      </div>
+
+      <div class="connections-layout">
+        <section class="graph-card">
+          <div class="graph-toolbar">
+            <div>
+              <strong>Live graph</strong>
+              <span id="graphCaption">Add notes to light it up.</span>
+            </div>
+            <button class="text-button" id="resetGraph" type="button">Reset view</button>
+          </div>
+          <div id="graphWrap" class="graph-wrap">
+            <svg id="connectionGraph" viewBox="0 0 900 560" role="img" aria-label="Knowledge graph connecting books by shared concepts"></svg>
+          </div>
+          <div id="graphLegend" class="graph-legend"></div>
+        </section>
+
+        <aside class="insights">
+          <section class="insight-card">
+            <p class="kicker">EMERGING THEMES</p>
+            <div id="themeList" class="theme-list"></div>
+          </section>
+          <section class="insight-card">
+            <p class="kicker">STRONGEST BRIDGES</p>
+            <div id="bridgeList"></div>
+          </section>
+          <section class="insight-card">
+            <p class="kicker">WHAT TO REVISIT NEXT</p>
+            <div id="revisitList"></div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="prompt-card">
+        <div class="prompt-head">
+          <div>
+            <p class="kicker">SYNTHESIS PROMPT</p>
+            <h3>Turn your notes into a founder-strategy conversation.</h3>
+          </div>
+          <button class="button secondary" id="copyPrompt" type="button">Copy prompt</button>
+        </div>
+        <textarea id="synthesisPrompt" readonly spellcheck="false"></textarea>
+      </section>
+    </section>
+
+    <section class="view" id="view-roadmap" data-view="roadmap" hidden>
+      <div class="section-head">
+        <p class="eyebrow">THE YEAR</p>
+        <h2>One muscle at a time.</h2>
+        <p>The ordering is deliberate: strategic diagnosis first, then power and firm boundaries, then financial fluency, capital allocation, operating reality, institutions, and finally judgment.</p>
+      </div>
+      <div id="roadmap" class="roadmap"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Your notes stay in this browser. Export a backup occasionally. Book covers are resolved live from Open Library and Google Books.</p>
+  </footer>
+
+  <dialog id="bookDialog" class="book-dialog">
+    <div class="dialog-shell">
+      <header class="dialog-top">
+        <button class="icon-button" id="closeBook" type="button" aria-label="Close book">×</button>
+        <span id="dialogWeek" class="dialog-week">Week 1</span>
+        <button class="text-button" id="refreshCover" type="button">Refresh cover</button>
+      </header>
+      <div id="bookDialogBody"></div>
+    </div>
+  </dialog>
+
+  <dialog id="dataDialog" class="small-dialog">
+    <div class="small-dialog-shell">
+      <header>
+        <div>
+          <p class="kicker">DATA</p>
+          <h2>Keep your notes portable.</h2>
+        </div>
+        <button class="icon-button" id="closeData" type="button" aria-label="Close">×</button>
+      </header>
+      <button class="button" id="exportNotes" type="button">Export notes as JSON</button>
+      <label class="button secondary file-button">
+        Import notes
+        <input id="importNotes" type="file" accept="application/json,.json">
+      </label>
+      <button class="button ghost" id="clearNotes" type="button">Clear local notes</button>
+      <p class="dialog-help">Import accepts exports from this site and the earlier Founder’s Strategist prototype.</p>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">This site needs JavaScript for the interactive bookshelf, notes, and live cover loading.</div>
+  </noscript>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
